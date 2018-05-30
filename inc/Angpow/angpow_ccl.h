@@ -11,6 +11,10 @@
 
 //#pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifdef HAVE_ANGPOW
 
 //this is the public Angpow interface function to be used within CCL
@@ -31,15 +35,15 @@ void ccl_angular_cls_angpow(ccl_cosmology *ccl_cosmo,CCL_ClWorkspace *w,
   a_clt2.chimin = clt2->chimin;    a_clt2.chimax = clt2->chimax;
   a_clt2.zmin = clt2->zmin;        a_clt2.zmax = clt2->zmax;
   a_clt2.spl_bz = clt2->spl_bz;    a_clt2.spl_nz = clt2->spl_nz;
-  
+
   a_w.lmax=w->lmax; a_w.l_limber=w->l_limber; a_w.l_linstep = w->l_linstep;
   a_w.l_logstep = w->l_logstep; a_w.l_arr = w->l_arr;
-  
+
   ccl_angular_cls_angpow_default(ccl_spline_eval, ccl_comoving_radial_distance,
 				 ccl_scale_factor_of_chi, ccl_growth_rate,
 				 ccl_nonlin_matter_power,
 				 ccl_cosmo, w, clt1, clt2,
-				 &a_clt1, &a_clt2, &a_w,    
+				 &a_clt1, &a_clt2, &a_w,
 				 ccl_cosmo->status_message, cl_out, status);
 
 }
@@ -55,7 +59,7 @@ void ccl_angular_cls_angpow(ccl_cosmology *ccl_cosmo,CCL_ClWorkspace *w,
 }
 
 #endif /* HAVE_ANGPOW */
-  
+
 #ifdef __cplusplus
 }
 #endif
